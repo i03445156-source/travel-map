@@ -62,13 +62,13 @@ const TRAVELS = [
   },
   {
     id: 7,
-    title: "경주 교동",
+    title: "대구 교동",
     country: "한국",
     date: "2025-10-18",
-    lat: 35.8359, lng: 129.2124,
+    lat: 35.8679, lng: 128.5870,
     photo: "photos/교동_251018.jpg",
-    desc: "경주 교동 한옥마을 가을 나들이 🍁",
-    emoji: "⛩️"
+    desc: "교동 가을 나들이 🍂",
+    emoji: "🏘️"
   },
   {
     id: 8,
