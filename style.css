@@ -181,6 +181,80 @@ body {
   background: rgba(255, 182, 193, 0.4);
 }
 
+/* 음악 버튼 */
+#music-btn {
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  z-index: 1000;
+  width: 56px;
+  height: 56px;
+  background: rgba(26, 26, 46, 0.85);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 182, 193, 0.4);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255, 182, 193, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  gap: 2px;
+}
+
+#music-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 28px rgba(255, 182, 193, 0.5);
+}
+
+#music-icon {
+  font-size: 1rem;
+  color: #ffb6c1;
+  line-height: 1;
+  display: block;
+}
+
+#music-bars {
+  display: none;
+  align-items: flex-end;
+  gap: 2px;
+  height: 16px;
+}
+
+#music-bars span {
+  display: block;
+  width: 3px;
+  background: #ffb6c1;
+  border-radius: 2px;
+  animation: none;
+}
+
+#music-bars span:nth-child(1) { height: 6px;  animation-delay: 0s; }
+#music-bars span:nth-child(2) { height: 12px; animation-delay: 0.15s; }
+#music-bars span:nth-child(3) { height: 8px;  animation-delay: 0.3s; }
+#music-bars span:nth-child(4) { height: 14px; animation-delay: 0.1s; }
+
+@keyframes bar-bounce {
+  0%, 100% { transform: scaleY(0.4); }
+  50%       { transform: scaleY(1); }
+}
+
+#music-btn.playing #music-icon { display: none; }
+#music-btn.playing #music-bars {
+  display: flex;
+}
+#music-btn.playing #music-bars span {
+  animation: bar-bounce 0.8s ease-in-out infinite;
+}
+
+#music-label {
+  font-size: 0.5rem;
+  color: #ffb6c1;
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+}
+
 /* 라이트박스 */
 #lightbox {
   position: fixed;

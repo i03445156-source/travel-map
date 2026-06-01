@@ -94,3 +94,19 @@ document.addEventListener('keydown', (e) => {
     document.getElementById('lightbox').classList.add('hidden');
   }
 });
+
+// 배경음악 컨트롤
+const bgm = document.getElementById('bgm');
+const musicBtn = document.getElementById('music-btn');
+let playing = false;
+
+musicBtn.addEventListener('click', () => {
+  if (playing) {
+    bgm.pause();
+    musicBtn.classList.remove('playing');
+  } else {
+    bgm.play().catch(() => {});
+    musicBtn.classList.add('playing');
+  }
+  playing = !playing;
+});
