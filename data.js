@@ -315,6 +315,6 @@ const TRAVELS = [
   { id: 59, title: "이태원 (서울)", country: "한국", date: "", lat: 37.5345, lng: 126.9942, photo: "photos/이태원.jpg", desc: "", emoji: "🌍" },
   { id: 60, title: "포항", country: "한국", date: "", lat: 36.0195, lng: 129.3440, photo: "photos/포항글씨.jpg", desc: "", emoji: "🌊" },
   { id: 61, title: "포항", country: "한국", date: "", lat: 36.0200, lng: 129.3445, photo: "photos/포항글씨4.jpg", desc: "", emoji: "🌊" },
-  { id: 62, title: "해운대 (부산)", country: "한국", date: "", lat: 35.1587, lng: 129.1604, photo: "photos/해운대.jpg", desc: "", emoji: "🏖️" },
-  { id: 63, title: "해운대 (부산)", country: "한국", date: "", lat: 35.1590, lng: 129.1610, photo: "photos/해운대스페인.jpg", desc: "해운대 스페인 식당 🥘", emoji: "🥘" },
+  { id: 62, title: "광안리 (부산)", country: "한국", date: "", lat: 35.1530, lng: 129.1185, photo: "photos/해운대.jpg", desc: "", emoji: "🏖️" },
+  { id: 63, title: "광안리 (부산)", country: "한국", date: "", lat: 35.1533, lng: 129.1190, photo: "photos/해운대스페인.jpg", desc: "광안리 스페인 식당 🥘", emoji: "🥘" },
 ];
