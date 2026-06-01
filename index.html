@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>우리의 여행 지도 ✈️</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="header">
+    <h1>✈️ 우리의 여행 지도</h1>
+    <p id="subtitle">함께한 모든 순간들 🌍</p>
+  </div>
+
+  <div id="map"></div>
+
+  <!-- 사진 라이트박스 -->
+  <div id="lightbox" class="hidden">
+    <div id="lightbox-inner">
+      <button id="lightbox-close">✕</button>
+      <img id="lightbox-img" src="" alt="" />
+      <div id="lightbox-info">
+        <h2 id="lb-title"></h2>
+        <p id="lb-date"></p>
+        <p id="lb-desc"></p>
+      </div>
+    </div>
+  </div>
+
+  <div id="stats">
+    <span id="stat-countries">🌏 0개국</span>
+    <span id="stat-cities">📍 0곳</span>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
