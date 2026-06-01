@@ -15,13 +15,84 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r
 // 줌 컨트롤 오른쪽 위로
 L.control.zoom({ position: 'topright' }).addTo(map);
 
-// 라이트박스 열기
+// ── 댓글 ─────────────────────────────────────────────────
+
+function commentsKey(id) { return `travel_comments_${id}`; }
+
+function loadComments(id) {
+  try { return JSON.parse(localStorage.getItem(commentsKey(id))) || []; }
+  catch { return []; }
+}
+
+function saveComments(id, comments) {
+  localStorage.setItem(commentsKey(id), JSON.stringify(comments));
+}
+
+function formatCommentDate(iso) {
+  const d = new Date(iso);
+  return `${d.getFullYear()}.${String(d.getMonth()+1).padStart(2,'0')}.${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+
+let currentTravelId = null;
+
+function renderComments() {
+  const list = document.getElementById('comments-list');
+  const comments = loadComments(currentTravelId);
+  if (comments.length === 0) {
+    list.innerHTML = '<div class="no-comments">아직 댓글이 없어요. 첫 기억을 남겨보세요 💕</div>';
+    return;
+  }
+  list.innerHTML = comments.map((c, i) => `
+    <div class="comment-item">
+      <div class="comment-meta">
+        <span class="comment-author">
+          ${c.author === '나' ? '🧡 나' : '💕 지인'}
+        </span>
+        <span>
+          <span class="comment-date">${formatCommentDate(c.date)}</span>
+          <button class="comment-delete" onclick="deleteComment(${i})" title="삭제">✕</button>
+        </span>
+      </div>
+      <div class="comment-text">${c.text.replace(/</g,'&lt;')}</div>
+    </div>
+  `).join('');
+  list.scrollTop = list.scrollHeight;
+}
+
+function deleteComment(index) {
+  const comments = loadComments(currentTravelId);
+  comments.splice(index, 1);
+  saveComments(currentTravelId, comments);
+  renderComments();
+}
+
+document.getElementById('comment-submit').addEventListener('click', () => {
+  const text = document.getElementById('comment-text').value.trim();
+  const author = document.getElementById('comment-author').value;
+  if (!text) return;
+  const comments = loadComments(currentTravelId);
+  comments.push({ author, text, date: new Date().toISOString() });
+  saveComments(currentTravelId, comments);
+  document.getElementById('comment-text').value = '';
+  renderComments();
+});
+
+document.getElementById('comment-text').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+    document.getElementById('comment-submit').click();
+  }
+});
+
+// ── 라이트박스 ────────────────────────────────────────────
+
 function openLightbox(travel) {
+  currentTravelId = travel.id;
   document.getElementById('lightbox-img').src = travel.photo || '';
   document.getElementById('lightbox-img').style.display = travel.photo ? 'block' : 'none';
   document.getElementById('lb-title').textContent = travel.title;
   document.getElementById('lb-date').textContent = '📅 ' + travel.date;
   document.getElementById('lb-desc').textContent = travel.desc || '';
+  renderComments();
   document.getElementById('lightbox').classList.remove('hidden');
 }
 
