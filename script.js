@@ -1,7 +1,7 @@
 // 지도 초기화
 const map = L.map('map', {
-  center: [30, 15],
-  zoom: 3,
+  center: [35.5, 128.2],
+  zoom: 7,
   zoomControl: false,
   attributionControl: false,
 });
